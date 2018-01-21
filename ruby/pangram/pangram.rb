@@ -1,6 +1,6 @@
 class Pangram
   def self.pangram? phrase
-    (?A..?Z).all? { |letter| phrase.upcase.index(letter) }
+    (?a..?z).all? { |letter| phrase.downcase.include? letter }
   end
 end
 
