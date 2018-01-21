@@ -13,18 +13,16 @@ module RomanNumerable
      V: 5,
     IV: 4,
      I: 1
-  }
+  }.freeze
 
   def to_roman
-    input = self
-    output = ''
-    CONVERSIONS.each do |roman, arabic|
-      while input >= arabic
-        input -= arabic
-        output << roman.to_s
-      end
+    result = ''
+    CONVERSIONS.inject(self) do |number, (roman, arabic)|
+      quotient, remainder = number.divmod arabic
+      result << roman.to_s * quotient
+      remainder
     end
-    output
+    result
   end
 end
 
